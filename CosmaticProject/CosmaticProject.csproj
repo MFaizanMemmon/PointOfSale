@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{172E7955-D36A-4389-95DE-8095E7E7A033}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CosmaticProject</RootNamespace>
+    <AssemblyName>CosmaticProject</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Database Layer\DataAccess.cs" />
+    <Compile Include="Forms\Customer\frmNewCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Customer\frmNewCustomer.Designer.cs">
+      <DependentUpon>frmNewCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee Forms\frmEmpRegistration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee Forms\frmEmpRegistration.Designer.cs">
+      <DependentUpon>frmEmpRegistration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Employee Forms\frmSearchEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Employee Forms\frmSearchEmployee.Designer.cs">
+      <DependentUpon>frmSearchEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Expense Form\frmExpenses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Expense Form\frmExpenses.Designer.cs">
+      <DependentUpon>frmExpenses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Expense Form\frmExpensesCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Expense Form\frmExpensesCategory.Designer.cs">
+      <DependentUpon>frmExpensesCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmStartup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmStartup.Designer.cs">
+      <DependentUpon>frmStartup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Purchase Form\frmNewPurchase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Purchase Form\frmNewPurchase.Designer.cs">
+      <DependentUpon>frmNewPurchase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Purchase Form\frmSearchSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Purchase Form\frmSearchSupplier.Designer.cs">
+      <DependentUpon>frmSearchSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Stock Form\frmCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Stock Form\frmCategory.Designer.cs">
+      <DependentUpon>frmCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Stock Form\frmProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Stock Form\frmProduct.Designer.cs">
+      <DependentUpon>frmProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Supplier\frmNewSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Supplier\frmNewSupplier.Designer.cs">
+      <DependentUpon>frmNewSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\User Forms\frmCreateNewUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\User Forms\frmCreateNewUser.Designer.cs">
+      <DependentUpon>frmCreateNewUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\User Forms\frmUserLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\User Forms\frmUserLogin.Designer.cs">
+      <DependentUpon>frmUserLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\User Forms\frmUserType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\User Forms\frmUserType.Designer.cs">
+      <DependentUpon>frmUserType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeForm.Designer.cs">
+      <DependentUpon>HomeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source Code\ComboHelper.cs" />
+    <Compile Include="Source Code\Common.cs" />
+    <Compile Include="Source Code\UserInfo.cs" />
+    <EmbeddedResource Include="Forms\Customer\frmNewCustomer.resx">
+      <DependentUpon>frmNewCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Employee Forms\frmEmpRegistration.resx">
+      <DependentUpon>frmEmpRegistration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Employee Forms\frmSearchEmployee.resx">
+      <DependentUpon>frmSearchEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Expense Form\frmExpenses.resx">
+      <DependentUpon>frmExpenses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Expense Form\frmExpensesCategory.resx">
+      <DependentUpon>frmExpensesCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmStartup.resx">
+      <DependentUpon>frmStartup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Purchase Form\frmNewPurchase.resx">
+      <DependentUpon>frmNewPurchase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Purchase Form\frmSearchSupplier.resx">
+      <DependentUpon>frmSearchSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Stock Form\frmCategory.resx">
+      <DependentUpon>frmCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Stock Form\frmProduct.resx">
+      <DependentUpon>frmProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Supplier\frmNewSupplier.resx">
+      <DependentUpon>frmNewSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\User Forms\frmCreateNewUser.resx">
+      <DependentUpon>frmCreateNewUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\User Forms\frmUserLogin.resx">
+      <DependentUpon>frmUserLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\User Forms\frmUserType.resx">
+      <DependentUpon>frmUserType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeForm.resx">
+      <DependentUpon>HomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media-playlist-shuffle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\object-unlocked-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-insert-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\format-justify-left-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\format-justify-right-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\archive-extract-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\run-build-file-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-saved-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder-saved-search1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view-statistics.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
