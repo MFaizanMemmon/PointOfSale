@@ -289,5 +289,10 @@ namespace CosmaticProject.Forms.Purchase_Form
                 }
             }
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
