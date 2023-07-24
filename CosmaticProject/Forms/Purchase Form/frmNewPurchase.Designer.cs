@@ -37,7 +37,7 @@
             this.txtSearchSupplier = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCancle = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -73,12 +73,14 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
+            this.lblTotalCost = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.chkPayment = new System.Windows.Forms.CheckBox();
+            this.btnCanclePurchase = new System.Windows.Forms.Button();
+            this.btnConfirmPurchase = new System.Windows.Forms.Button();
             this.ep = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtComments = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -165,7 +167,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.btnCancle);
             this.groupBox2.Controls.Add(this.btnUpdate);
             this.groupBox2.Controls.Add(this.btnClear);
             this.groupBox2.Controls.Add(this.btnAdd);
@@ -188,33 +190,36 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Select Product";
             // 
-            // button1
+            // btnCancle
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(80, 329);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 26);
-            this.button1.TabIndex = 32;
-            this.button1.Text = "Reset";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCancle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancle.Location = new System.Drawing.Point(80, 315);
+            this.btnCancle.Name = "btnCancle";
+            this.btnCancle.Size = new System.Drawing.Size(95, 30);
+            this.btnCancle.TabIndex = 32;
+            this.btnCancle.Text = "Cancle";
+            this.btnCancle.UseVisualStyleBackColor = true;
+            this.btnCancle.Visible = false;
+            this.btnCancle.Click += new System.EventHandler(this.btnCancle_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(179, 329);
+            this.btnUpdate.Location = new System.Drawing.Point(179, 315);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(95, 26);
+            this.btnUpdate.Size = new System.Drawing.Size(95, 30);
             this.btnUpdate.TabIndex = 31;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Visible = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.Location = new System.Drawing.Point(80, 297);
+            this.btnClear.Location = new System.Drawing.Point(80, 315);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(95, 26);
+            this.btnClear.Size = new System.Drawing.Size(95, 30);
             this.btnClear.TabIndex = 30;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -223,9 +228,9 @@
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(179, 297);
+            this.btnAdd.Location = new System.Drawing.Point(179, 315);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(95, 26);
+            this.btnAdd.Size = new System.Drawing.Size(95, 30);
             this.btnAdd.TabIndex = 28;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -542,73 +547,98 @@
             this.label19.TabIndex = 19;
             this.label19.Text = "Invoice";
             // 
-            // label20
+            // lblTotalCost
             // 
-            this.label20.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(706, 556);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(184, 29);
-            this.label20.TabIndex = 25;
-            this.label20.Text = "Item Cost";
-            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTotalCost.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblTotalCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalCost.Location = new System.Drawing.Point(706, 521);
+            this.lblTotalCost.Name = "lblTotalCost";
+            this.lblTotalCost.Size = new System.Drawing.Size(184, 29);
+            this.lblTotalCost.TabIndex = 25;
+            this.lblTotalCost.Text = "Item Cost";
+            this.lblTotalCost.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(603, 567);
+            this.label21.Location = new System.Drawing.Point(603, 532);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(97, 18);
             this.label21.TabIndex = 26;
             this.label21.Text = "Total Cost :";
             // 
-            // checkBox1
+            // chkPayment
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(698, 608);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(192, 22);
-            this.checkBox1.TabIndex = 27;
-            this.checkBox1.Text = "Is Payment Successfull ?";
-            this.checkBox1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkPayment.AutoSize = true;
+            this.chkPayment.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkPayment.Checked = true;
+            this.chkPayment.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkPayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkPayment.Location = new System.Drawing.Point(319, 528);
+            this.chkPayment.Name = "chkPayment";
+            this.chkPayment.Size = new System.Drawing.Size(192, 22);
+            this.chkPayment.TabIndex = 27;
+            this.chkPayment.Text = "Is Payment Successfull ?";
+            this.chkPayment.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.chkPayment.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnCanclePurchase
             // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(304, 609);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(154, 53);
-            this.button4.TabIndex = 32;
-            this.button4.Text = "Cancle";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnCanclePurchase.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCanclePurchase.Location = new System.Drawing.Point(304, 609);
+            this.btnCanclePurchase.Name = "btnCanclePurchase";
+            this.btnCanclePurchase.Size = new System.Drawing.Size(154, 53);
+            this.btnCanclePurchase.TabIndex = 32;
+            this.btnCanclePurchase.Text = "Cancle";
+            this.btnCanclePurchase.UseVisualStyleBackColor = true;
+            this.btnCanclePurchase.Click += new System.EventHandler(this.btnCanclePurchase_Click);
             // 
-            // button5
+            // btnConfirmPurchase
             // 
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(464, 608);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(154, 53);
-            this.button5.TabIndex = 33;
-            this.button5.Text = "Confirm";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnConfirmPurchase.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfirmPurchase.Location = new System.Drawing.Point(736, 609);
+            this.btnConfirmPurchase.Name = "btnConfirmPurchase";
+            this.btnConfirmPurchase.Size = new System.Drawing.Size(154, 53);
+            this.btnConfirmPurchase.TabIndex = 33;
+            this.btnConfirmPurchase.Text = "Confirm";
+            this.btnConfirmPurchase.UseVisualStyleBackColor = true;
+            this.btnConfirmPurchase.Click += new System.EventHandler(this.btnConfirmPurchase_Click);
             // 
             // ep
             // 
             this.ep.ContainerControl = this;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(474, 583);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 18);
+            this.label3.TabIndex = 33;
+            this.label3.Text = "Comments";
+            // 
+            // txtComments
+            // 
+            this.txtComments.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtComments.Location = new System.Drawing.Point(477, 604);
+            this.txtComments.Multiline = true;
+            this.txtComments.Name = "txtComments";
+            this.txtComments.Size = new System.Drawing.Size(241, 58);
+            this.txtComments.TabIndex = 6;
             // 
             // frmNewPurchase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(902, 674);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.label20);
+            this.Controls.Add(this.txtComments);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnConfirmPurchase);
+            this.Controls.Add(this.btnCanclePurchase);
+            this.Controls.Add(this.chkPayment);
+            this.Controls.Add(this.lblTotalCost);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.dgvInvoice);
@@ -665,13 +695,13 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DataGridView dgvInvoice;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label lblTotalCost;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chkPayment;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnCanclePurchase;
+        private System.Windows.Forms.Button btnConfirmPurchase;
         public System.Windows.Forms.Label lblContact;
         public System.Windows.Forms.Label lblSupplier;
         private System.Windows.Forms.DataGridViewTextBoxColumn colProductID;
@@ -686,7 +716,9 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCancle;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.TextBox txtComments;
+        private System.Windows.Forms.Label label3;
     }
 }

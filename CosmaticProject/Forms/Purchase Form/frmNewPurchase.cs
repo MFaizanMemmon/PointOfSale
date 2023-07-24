@@ -76,7 +76,7 @@ namespace CosmaticProject.Forms.Purchase_Form
 
         private void txtQty_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&(e.KeyChar != '.'))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
             {
                 e.Handled = true;
             }
@@ -156,20 +156,27 @@ namespace CosmaticProject.Forms.Purchase_Form
 
         private void EnableField()
         {
-           
+
             btnAdd.Visible = false;
             btnClear.Visible = false;
             dgvInvoice.Enabled = false;
             txtSearchSupplier.Enabled = false;
+            btnUpdate.Visible = true;
+            btnCancle.Visible = true;
         }
 
         private void DisableField()
         {
-           
+
             btnAdd.Visible = true;
             btnClear.Visible = true;
             dgvInvoice.Enabled = true;
             txtSearchSupplier.Enabled = true;
+            btnUpdate.Visible = false;
+            btnCancle.Visible = false;
+            GetProductDetail(Convert.ToString(cmbProduct.SelectedValue));
+            CalculateAmount();
+
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -243,6 +250,8 @@ namespace CosmaticProject.Forms.Purchase_Form
             addItem.Cells[7].Value = itemCost;
             dgvInvoice.Rows.Add(addItem);
             ClearField();
+            DisableField();
+
 
         }
 
@@ -254,9 +263,10 @@ namespace CosmaticProject.Forms.Purchase_Form
                 {
                     if (dgvInvoice.SelectedRows.Count == 1)
                     {
-                        if (MessageBox.Show("Are you sure you want to delete these record","Delete",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+                        if (MessageBox.Show("Are you sure you want to delete these record", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             dgvInvoice.Rows.RemoveAt(dgvInvoice.CurrentRow.Index);
+                            CalculateAmount();
                         }
                     }
                 }
@@ -281,7 +291,7 @@ namespace CosmaticProject.Forms.Purchase_Form
                     txtPurchasePrice.Text = currentRow.Cells[5].Value.ToString();
                     txtSalePrice.Text = currentRow.Cells[6].Value.ToString();
                     lblItemCost.Text = currentRow.Cells[7].Value.ToString();
-                    DisableField();
+                    EnableField();
                 }
                 else
                 {
@@ -292,7 +302,179 @@ namespace CosmaticProject.Forms.Purchase_Form
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            ep.Clear();
+            if (cmbCategoryType.SelectedIndex == 0)
+            {
+                ep.SetError(cmbCategoryType, "Please Select Category");
+                cmbCategoryType.Focus();
+                return;
+            }
+            string CategoryID = Convert.ToString(cmbCategoryType.SelectedValue);
+            string CategoryName = cmbCategoryType.Text;
 
+            string ProductID = Convert.ToString(cmbProduct.SelectedValue);
+            string ProductName = cmbProduct.Text;
+
+            float qty = 0;
+            float.TryParse(txtQty.Text.Trim(), out qty);
+
+            float perUnitPrice = 0;
+            float.TryParse(txtPurchasePrice.Text.Trim(), out perUnitPrice);
+
+            float saleUnitPrice = 0;
+            float.TryParse(txtSalePrice.Text.Trim(), out saleUnitPrice);
+
+            float itemCost = 0;
+            float.TryParse(lblItemCost.Text.Trim(), out itemCost);
+
+            if (qty == 0)
+            {
+                ep.SetError(txtQty, "Please Enter Purchase Quantity");
+                txtQty.Focus();
+                txtQty.SelectAll();
+                return;
+            }
+
+            if (perUnitPrice == 0)
+            {
+                ep.SetError(txtPurchasePrice, "Please Enter Purchase Price");
+                txtPurchasePrice.Focus();
+                txtPurchasePrice.SelectAll();
+                return;
+            }
+
+
+
+            dgvInvoice.CurrentRow.Cells[0].Value = ProductID;
+            dgvInvoice.CurrentRow.Cells[1].Value = ProductName;
+            dgvInvoice.CurrentRow.Cells[2].Value = CategoryID;
+            dgvInvoice.CurrentRow.Cells[3].Value = CategoryName;
+            dgvInvoice.CurrentRow.Cells[4].Value = qty;
+            dgvInvoice.CurrentRow.Cells[5].Value = perUnitPrice;
+            dgvInvoice.CurrentRow.Cells[6].Value = saleUnitPrice;
+            dgvInvoice.CurrentRow.Cells[7].Value = itemCost;
+
+            ClearField();
+            DisableField();
+
+        }
+
+        private void CalculateAmount()
+        {
+            try
+            {
+                if (dgvInvoice != null)
+                {
+                    if (dgvInvoice.Rows.Count > 0)
+                    {
+                        float TotalAmount = 0;
+                        foreach (DataGridViewRow item in dgvInvoice.Rows)
+                        {
+                            float amount = 0;
+                            float.TryParse(item.Cells[7].Value.ToString(), out amount);
+                            TotalAmount += amount;
+
+                        }
+                        lblTotalCost.Text = TotalAmount.ToString();
+                    }
+                }
+                else
+                {
+                    lblTotalCost.Text = "0.00";
+                }
+            }
+            catch
+            {
+
+                lblTotalCost.Text = "Error!";
+            }
+        }
+
+        private void btnCancle_Click(object sender, EventArgs e)
+        {
+            DisableField();
+        }
+
+        private void CanclePuchase()
+        {
+            btnCancle.Visible = false;
+            btnUpdate.Visible = false;
+            btnAdd.Visible = true;
+            btnClear.Visible = true;
+            dgvInvoice.Enabled = true;
+            txtSearchSupplier.Enabled = true;
+            SupplierID = string.Empty;
+            lblSupplier.Text = string.Empty;
+            lblContact.Text = string.Empty;
+            chkPayment.Checked = true;
+            GetProductDetail(Convert.ToString(cmbProduct.SelectedValue));
+            CalculateAmount();
+            ClearField();
+
+
+        }
+
+        private void btnConfirmPurchase_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ep.Clear();
+                if (string.IsNullOrEmpty(SupplierID))
+                {
+                    ep.SetError(txtSearchSupplier, "Please Search Supplier");
+                    txtSearchSupplier.Focus();
+                    return;
+                }
+
+                int _SupplierID = 0;
+                int.TryParse(SupplierID, out _SupplierID);
+                if (_SupplierID > 0)
+                {
+                    ep.SetError(txtSearchSupplier, "Please Search Supplier");
+                    txtSearchSupplier.Focus();
+                    return;
+                }
+                if (lblSupplier.Text.Trim() == string.Empty)
+                {
+                    ep.SetError(txtSearchSupplier, "Please Search Supplier");
+                    txtSearchSupplier.Focus();
+                    return;
+
+                }
+                if (dgvInvoice == null)
+                {
+
+                    ep.SetError(txtSearchSupplier, "Please Add any Product");
+                    btnAdd.Focus();
+                    return;
+                    
+                }
+                if (dgvInvoice.Rows.Count > 0)
+                {
+                    float TotalAmount = 0;
+                    float.TryParse(lblTotalCost.Text, out TotalAmount);
+                    string HeaderQuery = string.Format("insert into tblPurchase values({0},{1},'{2}',{3},'{4}')",UserInfo.EmployeeID,SupplierID,DateTime.Now,lblTotalCost.Text,txtComments.Text);
+                    
+                }
+                else
+                {
+
+                    ep.SetError(txtSearchSupplier, "Please Add any Product");
+                    btnAdd.Focus();
+                    return;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message.ToString(), "System Message");
+            }
+        }
+
+        private void btnCanclePurchase_Click(object sender, EventArgs e)
+        {
+            CanclePuchase();
         }
     }
 }

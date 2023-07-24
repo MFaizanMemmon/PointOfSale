@@ -95,6 +95,12 @@
     <Compile Include="Forms\Purchase Form\frmSearchSupplier.Designer.cs">
       <DependentUpon>frmSearchSupplier.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Sale Form\frmNewSale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Sale Form\frmNewSale.Designer.cs">
+      <DependentUpon>frmNewSale.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Stock Form\frmCategory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,8 +252,6 @@
   <ItemGroup>
     <None Include="Resources\view-statistics.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\Sale Form\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
